@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "campus-customs": {
+      "command": "/Users/CEO/Library/Mobile Documents/com~apple~CloudDocs/YALE EMBA AI FOUNDATIONS/hw5 Campus Customs/mcp_server/.venv/bin/python",
+      "args": [
+        "/Users/CEO/Library/Mobile Documents/com~apple~CloudDocs/YALE EMBA AI FOUNDATIONS/hw5 Campus Customs/mcp_server/server.py"
+      ]
+    }
+  }
+}

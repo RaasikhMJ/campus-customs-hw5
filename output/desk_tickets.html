@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Customs — desk tickets</title>
+  <style>
+    :root {
+      --ink: #1c1915;
+      --muted: #5c564c;
+      --line: #e4dccf;
+      --paper: #faf7f2;
+      --card: #fffdf9;
+      --yale: #00356b;
+      --yale-soft: #e7eef5;
+      --empty: #f3efe8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 16px/1.5 "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+      color: var(--ink);
+      background: var(--paper);
+    }
+    header {
+      padding: 28px 32px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    header p { margin: 6px 0 0; color: var(--muted); }
+    h1 { margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.02em; }
+    .meta { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .meta span {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font: 13px/1.4 ui-sans-serif, system-ui, sans-serif;
+    }
+    nav {
+      display: flex;
+      gap: 6px;
+      padding: 14px 32px 0;
+      border-bottom: 1px solid var(--line);
+      overflow-x: auto;
+    }
+    nav button {
+      appearance: none;
+      border: 1px solid transparent;
+      border-bottom: none;
+      background: transparent;
+      color: var(--muted);
+      font: 14px/1.2 ui-sans-serif, system-ui, sans-serif;
+      padding: 10px 14px;
+      border-radius: 10px 10px 0 0;
+      cursor: pointer;
+    }
+    nav button[aria-selected="true"] {
+      background: var(--card);
+      color: var(--yale);
+      border-color: var(--line);
+      font-weight: 650;
+    }
+    main { padding: 24px 32px 64px; max-width: 980px; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    h2 { margin: 0 0 6px; font-size: 22px; }
+    .lede { margin: 0 0 18px; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+    article {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 18px 8px;
+    }
+    article.blank { background: var(--empty); }
+    h3 {
+      margin: 0 0 8px;
+      font: 600 13px/1.2 ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--yale);
+    }
+    article.blank h3 { color: var(--muted); }
+    h4 { margin: 14px 0 4px; font-size: 16px; }
+    ul { margin: 6px 0 14px; padding-left: 18px; }
+    li { margin: 4px 0; }
+    code {
+      font: 13px/1.4 ui-monospace, "SF Mono", Menlo, monospace;
+      background: var(--yale-soft);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+    .soon {
+      margin: 8px 0 16px;
+      color: var(--muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Campus Customs desk</h1>
+    <p>Expected plan for the three open tickets. Actual is empty until the agents run.</p>
+    <div class="meta">
+      <span>Shop date 2026-08-31</span>
+      <span>Checking $3,400</span>
+      <span>Working copy campus_customs_new.db</span>
+    </div>
+  </header>
+
+  <nav role="tablist" aria-label="Desk pages">
+    <button role="tab" id="tab-101" aria-controls="panel-101" aria-selected="true" type="button">Ticket 101</button>
+    <button role="tab" id="tab-102" aria-controls="panel-102" aria-selected="false" tabindex="-1" type="button">Ticket 102</button>
+    <button role="tab" id="tab-103" aria-controls="panel-103" aria-selected="false" tabindex="-1" type="button">Ticket 103</button>
+    <button role="tab" id="tab-cash" aria-controls="panel-cash" aria-selected="false" tabindex="-1" type="button">Cash</button>
+    <button role="tab" id="tab-reflection" aria-controls="panel-reflection" aria-selected="false" tabindex="-1" type="button">Reflection</button>
+  </nav>
+
+  <main>
+    <section class="panel active" id="panel-101" role="tabpanel" aria-labelledby="tab-101">
+      <h2>101 — Bulldog tee</h2>
+      <p class="lede">Customer order from Tauhid Zaman. One Classic Bulldog Tee, <code>CC-TEE-WHITE</code>, size S. Invoice 501 is attached.</p>
+      <div class="grid">
+        <article>
+          <h3>Expected</h3>
+          <h4>Boss calls Inventory first</h4>
+          <p>Inventory verifies we have the product: one <code>CC-TEE-WHITE</code> in size S. That check comes before anyone tells the customer the order is moving.</p>
+          <h4>Then Customer Service, then the Boss, then Accounting</h4>
+          <p>Customer Service messages Tauhid that the order is in process. That message stays a draft on the board. The results come back to the Boss, who tells the owner how we fulfill from here. Accounting then reconciles the payment with the purchase, invoice 501. Facilities is not on this ticket.</p>
+          <h4>MCP tools this run should use</h4>
+          <ul>
+            <li><code>read_ticket(101)</code> on <code>tickets</code></li>
+            <li><code>check_size_on_hand("CC-TEE-WHITE", "S")</code> on <code>inventory</code>, for the stock check</li>
+            <li><code>list_sizes_on_hand("CC-TEE-WHITE")</code> on <code>inventory</code>, so the check sees the rest of the size run</li>
+            <li><code>read_vendor_invoice(501)</code> on <code>invoices</code> and <code>vendors</code>, for the purchase Accounting reconciles</li>
+            <li><code>read_cash_accounts()</code> on <code>cash_accounts</code></li>
+            <li><code>read_shop_date()</code> on <code>desk</code>, so the bill’s due date is compared with the shop date</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Actual</h3>
+          <p>Run 869887fff2ef. Checking stayed $3,400. The Boss stopped on the four-call cap before a closing note.</p>
+          <h4>Who ran</h4>
+          <p>Boss, Inventory, and Accounting. Customer Service was asked and refused because the handoff cap was already reached. Facilities did not run.</p>
+          <h4>Handoffs</h4>
+          <p>Boss asked Inventory to confirm size S. Inventory found qty 0 and asked Accounting about the open $840 invoice 501. The Boss then asked Accounting again to review that bill. Accounting tried to hand back to the Boss and was refused, because the Boss was already on the task.</p>
+          <h4>Tools used</h4>
+          <ul>
+            <li>Boss: <code>read_ticket</code>, <code>check_size_on_hand</code>, <code>read_vendor_invoice</code>, <code>read_shop_date</code></li>
+            <li>Inventory: <code>read_ticket</code>, <code>check_size_on_hand</code>, <code>list_sizes_on_hand</code>, <code>read_vendor_invoice</code></li>
+            <li>Accounting: <code>read_ticket</code>, <code>read_vendor_invoice</code>, <code>read_cash_accounts</code>, <code>read_shop_date</code>, <code>read_sku_price</code></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-102" role="tabpanel" aria-labelledby="tab-102" hidden>
+      <h2>102 — Rent due</h2>
+      <p class="lede">Rent notice from Elm City Properties. Lease 1. No SKU and no invoice. The note says the rent email claims two days.</p>
+      <div class="grid">
+        <article>
+          <h3>Expected</h3>
+          <h4>Boss calls Facilities first</h4>
+          <p>When the rent is due, Facilities checks for an operational issue that would stop payment, including the landlord not fulfilling a lease requirement. That finding is reported to the Boss.</p>
+          <h4>Then the Boss, then Accounting</h4>
+          <p>The Boss decides it is okay to pay, or reports a stop-payment. If the Boss has not stopped payment, Accounting schedules the rent check for the landlord’s office, Elm City Properties on lease 1. No tool mails the check or contacts the landlord. Inventory and Customer Service are not on this ticket.</p>
+          <h4>MCP tools this run should use</h4>
+          <ul>
+            <li><code>read_ticket(102)</code> on <code>tickets</code></li>
+            <li><code>read_lease(1)</code> on <code>leases</code>, for the rent, the due date, and any lease note</li>
+            <li><code>read_shop_date()</code> on <code>desk</code>, so Facilities can tell whether the rent is due</li>
+            <li><code>read_cash_accounts()</code> on <code>cash_accounts</code>, so Accounting can schedule against the checking balance</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Actual</h3>
+          <p>Run ceaab31dd004. Checking stayed $3,400. No check was mailed. The Boss stopped on the four-call cap before a closing note.</p>
+          <h4>Who ran</h4>
+          <p>Boss, Facilities, and Accounting. Inventory and Customer Service did not run.</p>
+          <h4>Handoffs</h4>
+          <p>Boss asked Facilities to own the rent notice. Facilities read lease 1 and asked Accounting to prepare the $2,400 rent, not to pay it. The Boss asked Accounting to confirm that preparation. Accounting asked Facilities again for the rent and the due date. Facilities then tried to ask Accounting back and was refused, because Accounting was already on the task. A further ask from the Boss to Accounting was refused because the handoff cap was reached.</p>
+          <h4>Tools used</h4>
+          <ul>
+            <li>Boss: <code>read_ticket</code></li>
+            <li>Facilities: <code>read_ticket</code>, <code>read_lease</code>, <code>read_shop_date</code></li>
+            <li>Accounting: <code>read_ticket</code>, <code>read_lease</code>, <code>read_cash_accounts</code>, <code>read_shop_date</code></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-103" role="tabpanel" aria-labelledby="tab-103" hidden>
+      <h2>103 — Bulk hoodie discount</h2>
+      <p class="lede">Price override from Yale AI Club. Twenty Basic Hoodie Big Yale, <code>CC-HOOD-NAVY</code>, size M. No lease and no invoice.</p>
+      <div class="grid">
+        <article>
+          <h3>Expected</h3>
+          <h4>Boss calls Customer Service first</h4>
+          <p>Yale AI Club asked for a bulk discount, so Customer Service owns the request and brings in only the two departments that can check it.</p>
+          <h4>Customer Service with Inventory and Accounting, then the Boss</h4>
+          <p>Customer Service works with Inventory to verify we have the inventory for the bulk order: 20 <code>CC-HOOD-NAVY</code> in size M. Customer Service works with Accounting on the discount. The Boss has to be okay with a bulk-order discount before that price is used. The reply to the club stays a draft on the board. Facilities is not on this ticket.</p>
+          <h4>MCP tools this run should use</h4>
+          <ul>
+            <li><code>read_ticket(103)</code> on <code>tickets</code></li>
+            <li><code>check_size_on_hand("CC-HOOD-NAVY", "M")</code> on <code>inventory</code>, for the bulk-order count</li>
+            <li><code>list_sizes_on_hand("CC-HOOD-NAVY")</code> on <code>inventory</code>, so the check sees the other sizes</li>
+            <li><code>read_sku_price("CC-HOOD-NAVY")</code> on <code>pricing</code>, so Accounting prices the discount from cost and list price</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Actual</h3>
+          <p>Run 57e17f685d16. Checking stayed $3,400. The customer note stayed a draft. The Boss stopped on the four-call cap before a closing note.</p>
+          <h4>Who ran</h4>
+          <p>Boss, Inventory, and Customer Service. Accounting was asked and refused because the handoff cap was reached. Facilities did not run.</p>
+          <h4>Handoffs</h4>
+          <p>Boss asked Inventory to count size M. Inventory found 8 on hand against 20 and asked Customer Service to say only that. The Boss asked Customer Service again for a draft, and Customer Service asked Inventory to verify the count once more. Inventory then tried to ask Accounting and was refused.</p>
+          <h4>Tools used</h4>
+          <ul>
+            <li>Boss: <code>list_open_tickets</code>, <code>read_ticket</code></li>
+            <li>Inventory: <code>read_ticket</code>, <code>check_size_on_hand</code></li>
+            <li>Customer Service: <code>read_ticket</code>, <code>check_size_on_hand</code></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-cash" role="tabpanel" aria-labelledby="tab-cash" hidden>
+      <h2>Cash</h2>
+      <p class="lede">Checking after the reset, then each ticket. The last line is the balance in <code>cash_accounts</code>.</p>
+      <ul>
+        <li>Starting checking, after the reset, shop date 2026-08-31: <strong>$3,400.00</strong></li>
+        <li>Ticket 101: <strong>$0.00</strong>. Invoice 501, the $840 rush reprint, was prepared and not approved. No pay was written.</li>
+        <li>Ticket 102: <strong>$0.00</strong>. Lease 1 rent, $2,400 to Elm City Properties, was prepared and not approved. No check was mailed.</li>
+        <li>Ticket 103: <strong>$0.00</strong>. No invoice and no lease, so there was no pay and no purchase.</li>
+        <li>Ending checking: <strong>$3,400.00</strong>. $3,400.00 + $0.00 + $0.00 + $0.00 = $3,400.00, which matches <code>cash_accounts</code>.</li>
+      </ul>
+    </section>
+
+    <section class="panel" id="panel-reflection" role="tabpanel" aria-labelledby="tab-reflection" hidden>
+      <h2>Reflection</h2>
+      <p class="lede">Every point below is from the ticket tabs and the Cash tab on this page, plus the desk that ran those tickets.</p>
+      <h3>How the agents performed</h3>
+      <p>101 went smooth and seamless, without issue. On the 101 tab the Boss called Inventory first. Inventory counted <code>CC-TEE-WHITE</code> size S at 0, and Accounting read invoice 501, the open $840 reprint. The Cash tab shows ticket 101 at <strong>$0.00</strong>. The bill was prepared and not paid, and checking stayed <strong>$3,400.00</strong>. Facilities stayed off that ticket.</p>
+      <p>102 went smooth and seamless, without issue. On the 102 tab the Boss called Facilities first. Facilities read lease 1, and Accounting prepared the $2,400 rent without mailing a check. The Cash tab shows ticket 102 at <strong>$0.00</strong>. Inventory and Customer Service stayed off that ticket.</p>
+      <p>103 presented a limit issue, so we had to rework how we address those matters so the Boss is not called too many times. On the 103 tab the Boss stopped on the four-call cap. Accounting was asked and refused, and the Cash tab shows ticket 103 at <strong>$0.00</strong> because that ticket had no invoice and no lease. The rework is one call from the Boss to Inventory, then Customer Service, then Accounting, and the invoice comes back up the chain instead of calling the Boss again.</p>
+      <h3>Actual against the plan</h3>
+      <p>101 worked as expected. The Expected side says Inventory first, then the customer draft, then Accounting on invoice 501. The Actual side is Boss to Inventory to Accounting, with the stock tools and <code>read_vendor_invoice</code>. Customer Service was refused once the handoff cap was hit. The Cash tab still shows <strong>$0.00</strong>, so the $840 reprint was not the sale.</p>
+      <p>102 worked as expected. The Expected side says Facilities first, then Accounting schedules the $2,400 and does not mail it. The Actual side is that handoff, using <code>read_lease</code>, <code>read_shop_date</code>, and <code>read_cash_accounts</code>. The Cash tab shows <strong>$0.00</strong> and no check mailed.</p>
+      <p>103 needed a more efficient process, and that process should be saved as a pathway for similar issues. Expected said Customer Service first, with Inventory and Accounting, and <code>read_sku_price</code> for the discount. Actual started at Inventory, Accounting never got in, and the price tool was not used. The Cash tab had nothing to move. The saved pathway is the one Boss call, then the chain, so a short rack and a bulk price do not burn the four-call cap.</p>
+      <h3>What one agent could have done</h3>
+      <p>103 could have been handled solely by the Boss or the human, because it required human thinking to resolve the matter. The 103 tab shows the team counting size M at 8 against an ask of 20 and then dying on the cap before a price. The Cash tab confirms the tools had no bill to pay. The human had to decide the order stays 20 size M, at 10% off because it is 20 or more, and that the 12 short are a reprint. One person with <code>check_size_on_hand</code> and <code>read_sku_price</code> could have put that choice on the desk. The team path is what made the Boss get called until the limit.</p>
+      <h3>Three problems this team could take</h3>
+      <p>Campus Customs can run out of inventory, and now it can replenish and keep certain pars in production versus sales. The 101 tab already shows that hole: size S qty 0. The 103 tab shows the other hole: size M qty 8 against 20. <code>check_size_on_hand</code> and <code>list_sizes_on_hand</code> are the tools that see the par break. The 103 pathway is how the shortfall gets priced and handed to the human instead of bouncing the Boss.</p>
+      <p>Customer Service needs the functionality to queue emails and to punch down solutions, like recommending alternative styles. On the 101 tab the customer note is a draft on the board, and no tool sends it. On the 103 tab the same rule holds: the club reply stays a draft. The size list is already a tool, so an alternative style can be named from stock the way the 103 rack listed the other sizes. The queue itself is the missing send button, which is why the Cash tab never shows a sale just because a draft was written.</p>
+      <p>Accounting needs a calendar that is shared globally for when recurring bills come up, so we do not stop production because the rent is not paid or the vendors are not paid. The 102 tab is the rent: lease 1, $2,400, due two days after the shop date. The 101 tab is the vendor bill: invoice 501, $840, due 2026-08-28, before the shop date 2026-08-31. The Cash tab shows both at <strong>$0.00</strong> after the runs, prepared and not paid, while checking stayed <strong>$3,400.00</strong>. <code>read_lease</code>, <code>read_vendor_invoice</code>, <code>read_shop_date</code>, and <code>read_cash_accounts</code> are how Accounting already sees those dates. The shared calendar is so those two bills surface before the rack goes quiet.</p>
+      <h3>Three problems this team could not take</h3>
+      <p>Campus Customs needs an app with a shopper experience. None of the three ticket tabs is a shopper screen. 101, 102, and 103 are desk tickets, and the Cash tab only moves when a human approves a bill the tools already found. There is no cart, no customer login, and no agent whose job is the shopper.</p>
+      <p>Campus Customs needs client feedback and reviews on the website. The 101 and 103 tabs let Customer Service write a draft and leave it on the board. Nothing on those tabs, or on the Cash tab, stores a review or a rating. That would take a review tool Customer Service does not have.</p>
+      <p>Campus Customs needs to showcase seasonal releases through media like reels that are top-notch productions. The tools on the ticket tabs read stock, price, leases, invoices, and cash. The Cash tab is a till, not a studio. A reel needs a media tool and a person who produces it. This desk does not have either one.</p>
+    </section>
+  </main>
+
+  <script>
+    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+    const panels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+
+    function select(tab) {
+      tabs.forEach((item) => {
+        const on = item === tab;
+        item.setAttribute("aria-selected", on ? "true" : "false");
+        item.tabIndex = on ? 0 : -1;
+      });
+      panels.forEach((panel) => {
+        const on = panel.id === tab.getAttribute("aria-controls");
+        panel.classList.toggle("active", on);
+        panel.hidden = !on;
+      });
+      tab.focus();
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => select(tab));
+      tab.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+        event.preventDefault();
+        const next = event.key === "ArrowRight" ? index + 1 : index - 1;
+        select(tabs[(next + tabs.length) % tabs.length]);
+      });
+    });
+  </script>
+</body>
+</html>

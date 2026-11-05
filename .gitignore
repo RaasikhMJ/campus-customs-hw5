@@ -1,0 +1,12 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+node_modules/
+frontend/dist/
+dist/
+.DS_Store
+*.db
+!data/campus_customs.db
+!data/campus_customs_new.db

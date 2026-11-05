@@ -1,0 +1,41 @@
+[
+  {
+    "id": 101,
+    "final_status": "resolved",
+    "outcome": "Size S of CC-TEE-WHITE is qty 0. Invoice 501 is an open $840 reprint and was prepared for the owner, not paid. Checking did not change.",
+    "agents": {
+      "boss": "Called Inventory first, then Accounting. Stopped on the four-call cap before a closing note.",
+      "inventory": "Confirmed size S is 0 and the other sizes are in stock, then handed the open invoice to Accounting.",
+      "accounting": "Read invoice 501, the shop date, checking, and the tee price. The $840 bill stayed unpaid.",
+      "facilities": "Did not run.",
+      "customer_service": "Was asked and refused because the handoff cap was already reached."
+    },
+    "human_approvals": []
+  },
+  {
+    "id": 102,
+    "final_status": "resolved",
+    "outcome": "Lease 1 rent is $2,400 due 2026-09-02. Accounting prepared it and did not pay. Checking did not change.",
+    "agents": {
+      "boss": "Called Facilities first, then Accounting. A later ask was refused at the handoff cap, and the Boss stopped on the four-call cap.",
+      "inventory": "Did not run.",
+      "accounting": "Prepared the $2,400 rent against checking at $3,400 and did not send it. Asked Facilities for the lease amount and due date.",
+      "facilities": "Read lease 1 and the shop date, then asked Accounting to prepare the rent without paying.",
+      "customer_service": "Did not run."
+    },
+    "human_approvals": []
+  },
+  {
+    "id": 103,
+    "final_status": "resolved",
+    "outcome": "Size M of CC-HOOD-NAVY has 8 on hand against a request for 20. Customer Service left a draft and did not email. No price was read and no money moved.",
+    "agents": {
+      "boss": "Called Inventory first, then Customer Service. Stopped on the four-call cap before a closing note.",
+      "inventory": "Counted 8 on hand in size M, short 12, and asked Customer Service to say only that.",
+      "accounting": "Was asked and refused because the handoff cap was reached. Did not read the price.",
+      "facilities": "Did not run.",
+      "customer_service": "Wrote a draft that 8 are on hand against 20, and did not email the club."
+    },
+    "human_approvals": []
+  }
+]

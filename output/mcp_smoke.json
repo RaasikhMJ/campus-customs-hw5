@@ -1,0 +1,43 @@
+[
+  {
+    "prompt": "Ticket 101 points at invoice 501. Call read_vendor_invoice for that invoice and return the database row.",
+    "tool": "read_vendor_invoice",
+    "output": {
+      "found": true,
+      "id": 501,
+      "vendor_id": 1,
+      "amount": 840.0,
+      "due_date": "2026-08-28",
+      "status": "open",
+      "description": "Rush reprint CC-TEE-WHITE S",
+      "vendor_name": "Bulldog Print Co",
+      "specialty": "apparel reprint",
+      "lead_days": 5
+    }
+  },
+  {
+    "prompt": "Ticket 102 points at lease 1. Call read_lease for that lease and return the database row.",
+    "tool": "read_lease",
+    "output": {
+      "found": true,
+      "id": 1,
+      "space_name": "Chapel Street shop",
+      "landlord": "Elm City Properties",
+      "monthly_rent": 2400.0,
+      "next_due": "2026-09-02",
+      "notes": null
+    }
+  },
+  {
+    "prompt": "Ticket 103 wants CC-HOOD-NAVY in size M. Call check_size_on_hand for that SKU and size and return the database row.",
+    "tool": "check_size_on_hand",
+    "output": {
+      "found": true,
+      "sku": "CC-HOOD-NAVY",
+      "name": "Basic Hoodie Big Yale",
+      "size": "M",
+      "qty": 8,
+      "location": "Aisle A"
+    }
+  }
+]
