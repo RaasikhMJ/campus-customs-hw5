@@ -308,4 +308,8 @@ That reply asks for the ticket tabs and the Cash tab under every answer. The ans
 
 ## Problem 11: Submit to GitHub
 
-**Status:** Waiting for your prompt.
+**Status:** Public repo is live. The URL is in `output/github_url.txt`. `.env` was not pushed. Both database files are in `data/`.
+
+**Prompt:**
+
+> push this project code to a public GitHub respository so graders can clone it. share the url here so i can upload it to canvas and also put it in output/github_url.txt be sure not to push the real .env to the github repo and do include both database files under data/ (original and working copy) so graders can run this app easily
